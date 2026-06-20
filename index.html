@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>はむはむ総選挙2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5efe6;
+    --paper: #fdf8f2;
+    --pink: #e8799a;
+    --blue: #6ab4d8;
+    --dark: #3a2e28;
+    --muted: #8a7a6e;
+    --border: #d4c5b0;
+    --c12: #9b8ecf; --c34: #e8799a; --c5: #f0a84e;
+    --c6: #6ab4d8;  --c7: #76c497;  --c8: #c97a7a;
+    --c9: #b8a04a;  --c10: #7a9ec9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ==================== HEADER ==================== */
+  .site-header {
+    text-align: center;
+    padding: 48px 20px 28px;
+    border-bottom: 2px solid var(--border);
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,168,76,0.04) 20px, rgba(201,168,76,0.04) 21px);
+  }
+  .year-badge {
+    display: inline-block;
+    background: var(--pink); color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    padding: 4px 16px; border-radius: 2px; margin-bottom: 12px;
+  }
+  .site-header h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(28px, 6vw, 52px);
+    font-weight: 900; letter-spacing: 0.1em; line-height: 1.2;
+    position: relative;
+  }
+  .site-header h1 span { color: var(--pink); }
+  .subtitle { margin-top: 10px; color: var(--muted); font-size: 13px; letter-spacing: 2px; }
+  .header-count { margin-top: 14px; font-size: 13px; color: var(--muted); }
+  .header-count strong { color: var(--pink); font-size: 20px; font-weight: 900; }
+
+  /* 投票ボタン（ヘッダー内） */
+  .vote-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .vote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    border: none;
+    cursor: pointer;
+  }
+  .vote-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+  .vote-btn:active { transform: translateY(0); }
+  .vote-btn.male {
+    background: linear-gradient(135deg, #6ab4d8, #4a9cc4);
+    color: #fff;
+  }
+  .vote-btn.female {
+    background: linear-gradient(135deg, #e8799a, #d45f82);
+    color: #fff;
+  }
+  .vote-btn .icon { font-size: 18px; }
+  .vote-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    position: relative;
+    letter-spacing: 1px;
+  }
+
+  /* ==================== YOUTUBE SECTION ==================== */
+  .youtube-section {
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .youtube-section .yt-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--pink);
+    margin-bottom: 3px;
+  }
+  .youtube-section .yt-title {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .youtube-text { flex-shrink: 0; }
+  .youtube-embed-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .youtube-embed {
+    position: relative;
+    width: 280px;
+    height: 158px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .youtube-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .youtube-placeholder {
+    position: absolute;
+    inset: 0;
+    background: #2a2420;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #6a5e54;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-radius: 4px;
+  }
+  .youtube-placeholder .yt-icon { font-size: 28px; opacity: 0.5; }
+  @media (max-width: 480px) {
+    .youtube-embed { width: 100%; height: auto; padding-top: 56.25%; }
+    .youtube-section { padding: 14px 16px; }
+  }
+
+  /* ==================== FILTER BAR ==================== */
+  .filter-bar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .filter-btn {
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--pink); color: var(--pink); }
+  .filter-btn.active { background: var(--pink); border-color: var(--pink); color: #fff; font-weight: 700; }
+  .search-wrap { position: relative; }
+  .search-wrap input {
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    padding: 5px 12px 5px 30px;
+    border-radius: 20px;
+    outline: none;
+    color: var(--dark);
+    width: 160px;
+    transition: border-color 0.15s;
+  }
+  .search-wrap input:focus { border-color: var(--pink); }
+  .search-wrap::before { content: '🔍'; position: absolute; left: 9px; top: 50%; transform: translateY(-50%); font-size: 11px; }
+
+  /* ==================== GRID ==================== */
+  .main { max-width: 1200px; margin: 0 auto; padding: 32px 20px 60px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+
+  /* ==================== CARD ==================== */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .card[data-gen="1"], .card[data-gen="2"]  { border-top: 4px solid var(--c12); }
+  .card[data-gen="3"], .card[data-gen="4"]  { border-top: 4px solid var(--c34); }
+  .card[data-gen="5"]  { border-top: 4px solid var(--c5); }
+  .card[data-gen="6"]  { border-top: 4px solid var(--c6); }
+  .card[data-gen="7"]  { border-top: 4px solid var(--c7); }
+  .card[data-gen="8"]  { border-top: 4px solid var(--c8); }
+  .card[data-gen="9"]  { border-top: 4px solid var(--c9); }
+  .card[data-gen="10"] { border-top: 4px solid var(--c10); }
+
+  .card-photo {
+    position: relative; width: 100%; padding-top: 62%;
+    overflow: hidden; background: #e8e0d6;
+    user-select: none; -webkit-user-select: none;
+  }
+  .card-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+  .card-photo::after { content: ''; position: absolute; inset: 0; z-index: 2; }
+  .card-photo .no-img { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .gen-tag {
+    position: absolute; top: 10px; left: 10px; z-index: 3;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    padding: 3px 8px; border-radius: 2px; color: #fff;
+  }
+  .card[data-gen="1"] .gen-tag, .card[data-gen="2"] .gen-tag { background: var(--c12); }
+  .card[data-gen="3"] .gen-tag, .card[data-gen="4"] .gen-tag { background: var(--c34); }
+  .card[data-gen="5"]  .gen-tag { background: var(--c5); }
+  .card[data-gen="6"]  .gen-tag { background: var(--c6); }
+  .card[data-gen="7"]  .gen-tag { background: var(--c7); }
+  .card[data-gen="8"]  .gen-tag { background: var(--c8); }
+  .card[data-gen="9"]  .gen-tag { background: var(--c9); }
+  .card[data-gen="10"] .gen-tag { background: var(--c10); }
+
+  .card-body { padding: 16px 18px 18px; }
+  .card-nickname { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-bottom: 2px; }
+  .card-name { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+  .card-desc { font-size: 12px; line-height: 1.75; color: #5a4e46; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); font-size: 11px; color: var(--muted); }
+  .song-val { font-size: 10px; }
+  .song-val.has::before { content: '♪ '; }
+  .song-val.has { font-style: italic; }
+  .song-val.none { opacity: 0.4; }
+  .song-val.none::before { content: '♪ '; }
+
+  /* ==================== MODAL ==================== */
+  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(40,30,22,0.72); z-index: 100; backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 6px; max-width: 680px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+    position: relative; animation: mIn 0.2s ease;
+  }
+  @keyframes mIn { from { opacity:0; transform:scale(0.96) translateY(8px); } to { opacity:1; transform:none; } }
+  .modal-close { position: absolute; top: 14px; right: 16px; background: transparent; border: none; font-size: 22px; cursor: pointer; color: var(--muted); z-index: 10; }
+  .modal-close:hover { color: var(--dark); }
+
+  .modal-photo { width: 100%; padding-top: 52%; position: relative; overflow: hidden; background: #e8e0d6; user-select: none; -webkit-user-select: none; }
+  .modal-photo.no-photo { padding-top: 0; height: 120px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+  .modal-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+  .modal-photo::after { content: ''; position: absolute; inset: 0; z-index: 2; }
+  .modal-photo.no-photo::after { display: none; }
+
+  .modal-gen-bar { height: 5px; }
+  .modal[data-gen="1"] .modal-gen-bar, .modal[data-gen="2"] .modal-gen-bar { background: var(--c12); }
+  .modal[data-gen="3"] .modal-gen-bar, .modal[data-gen="4"] .modal-gen-bar { background: var(--c34); }
+  .modal[data-gen="5"]  .modal-gen-bar { background: var(--c5); }
+  .modal[data-gen="6"]  .modal-gen-bar { background: var(--c6); }
+  .modal[data-gen="7"]  .modal-gen-bar { background: var(--c7); }
+  .modal[data-gen="8"]  .modal-gen-bar { background: var(--c8); }
+  .modal[data-gen="9"]  .modal-gen-bar { background: var(--c9); }
+  .modal[data-gen="10"] .modal-gen-bar { background: var(--c10); }
+
+  .modal-content { padding: 24px 28px 32px; }
+  .modal-top { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .modal-num { font-family: 'Noto Serif JP', serif; font-size: 48px; font-weight: 900; line-height: 1; color: var(--pink); opacity: 0.28; flex-shrink: 0; }
+  .modal-title-group { flex: 1; }
+  .modal-nickname { font-size: 11px; color: var(--muted); letter-spacing: 2px; margin-bottom: 2px; }
+  .modal-name { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 900; line-height: 1.2; }
+  .modal-meta { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .meta-row { font-size: 12px; color: var(--muted); display: flex; gap: 6px; align-items: baseline; }
+  .meta-row .lbl { opacity: 0.7; flex-shrink: 0; }
+  .meta-row .val { color: var(--blue); font-style: italic; }
+  .meta-row .val.none { color: var(--muted); opacity: 0.45; font-style: normal; }
+  .meta-row .val.plain { font-style: normal; }
+
+  .modal-gen-badge { display: inline-block; padding: 3px 12px; border-radius: 2px; font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+  .modal[data-gen="1"] .modal-gen-badge, .modal[data-gen="2"] .modal-gen-badge { background: var(--c12); }
+  .modal[data-gen="3"] .modal-gen-badge, .modal[data-gen="4"] .modal-gen-badge { background: var(--c34); }
+  .modal[data-gen="5"]  .modal-gen-badge { background: var(--c5); }
+  .modal[data-gen="6"]  .modal-gen-badge { background: var(--c6); }
+  .modal[data-gen="7"]  .modal-gen-badge { background: var(--c7); }
+  .modal[data-gen="8"]  .modal-gen-badge { background: var(--c8); }
+  .modal[data-gen="9"]  .modal-gen-badge { background: var(--c9); }
+  .modal[data-gen="10"] .modal-gen-badge { background: var(--c10); }
+
+  .modal-desc { font-size: 14px; line-height: 2; color: #4a3e38; background: var(--bg); border-left: 3px solid var(--border); padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 20px; }
+
+  /* モーダル内投票ボタン */
+  .modal-vote {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .modal-vote-btn {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 11px 16px;
+    border-radius: 4px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .modal-vote-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+  .modal-vote-btn.male { background: linear-gradient(135deg, #6ab4d8, #4a9cc4); color: #fff; }
+  .modal-vote-btn.female { background: linear-gradient(135deg, #e8799a, #d45f82); color: #fff; }
+  .modal-vote-label { font-size: 11px; color: var(--muted); text-align: center; margin-top: 8px; letter-spacing: 1px; }
+
+  .empty { grid-column: 1/-1; text-align: center; padding: 80px 20px; color: var(--muted); }
+  .empty .emoji { font-size: 48px; display: block; margin-bottom: 12px; }
+
+  footer { text-align: center; padding: 24px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); background: var(--paper); letter-spacing: 1px; }
+  img { -webkit-user-drag: none; user-select: none; }
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <div class="year-badge">2026</div>
+  <h1>はむはむ<span>総選挙</span></h1>
+  <p class="subtitle">HAMHAM GENERAL ELECTION 2026</p>
+  <p class="header-count">全 <strong id="total-count">0</strong> 匹 エントリー中</p>
+
+  <div class="vote-buttons">
+    <a href="VOTE_MALE_URL" class="vote-btn male" target="_blank">
+      <span class="icon">🐹</span> 男子に投票する
+    </a>
+    <a href="VOTE_FEMALE_URL" class="vote-btn female" target="_blank">
+      <span class="icon">🐹</span> 女子に投票する
+    </a>
+  </div>
+  <p class="vote-note">※ 投票は男子・女子それぞれ別のページです</p>
+</header>
+
+<!-- ==================== YOUTUBE ==================== -->
+<section class="youtube-section">
+  <div class="youtube-text">
+    <p class="yt-label">MOVIE</p>
+    <p class="yt-title">はむはむ総選挙2026<br>紹介動画</p>
+  </div>
+  <div class="youtube-embed-wrap">
+    <div class="youtube-embed">
+      <!--
+        YouTube動画IDをここに設定してください。
+        例: https://www.youtube.com/watch?v=XXXXXXXXXXX の場合
+            YOUTUBE_VIDEO_ID の部分を動画IDに変更
+      -->
+      <div class="youtube-placeholder">
+        <span class="yt-icon">▶</span>
+        動画準備中
+      </div>
+      <!-- 動画が決まったら上の placeholder を削除して下の iframe を有効にしてください -->
+      <!-- <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" allowfullscreen></iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FILTER BAR ==================== -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">すべて</button>
+  <button class="filter-btn" data-filter="1,2">1・2世代</button>
+  <button class="filter-btn" data-filter="3,4">3・4世代</button>
+  <button class="filter-btn" data-filter="5">5世代</button>
+  <button class="filter-btn" data-filter="6">6世代</button>
+  <button class="filter-btn" data-filter="7">7世代</button>
+  <button class="filter-btn" data-filter="8">8世代</button>
+  <button class="filter-btn" data-filter="9">9世代</button>
+  <button class="filter-btn" data-filter="10">10世代</button>
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="名前で検索...">
+  </div>
+</div>
+
+<!-- ==================== GRID ==================== -->
+<main class="main">
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- ==================== MODAL ==================== -->
+<div class="modal-backdrop" id="backdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div id="modal-photo-wrap"></div>
+    <div class="modal-gen-bar"></div>
+    <div class="modal-content">
+      <div class="modal-top">
+        <div class="modal-num" id="modal-num"></div>
+        <div class="modal-title-group">
+          <div class="modal-nickname" id="modal-nickname"></div>
+          <div class="modal-name" id="modal-name"></div>
+          <div class="modal-meta" id="modal-meta"></div>
+        </div>
+      </div>
+      <div class="modal-gen-badge" id="modal-gen-badge"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+
+      <!-- モーダル内投票ボタン -->
+      <div class="modal-vote">
+        <a href="VOTE_MALE_URL" class="modal-vote-btn male" target="_blank">🐹 男子に投票する</a>
+        <a href="VOTE_FEMALE_URL" class="modal-vote-btn female" target="_blank">🐹 女子に投票する</a>
+      </div>
+      <p class="modal-vote-label">※ 投票ページは男子・女子で別々です</p>
+    </div>
+  </div>
+</div>
+
+<footer>© はむはむ総選挙 2026　※画像の無断転載・使用を禁じます</footer>
+
+<script>
+// =====================================================
+// 投票ページURL（決まったら差し替えてください）
+// =====================================================
+const VOTE_URL_MALE   = 'VOTE_MALE_URL';
+const VOTE_URL_FEMALE = 'VOTE_FEMALE_URL';
+
+// =====================================================
+// データ（89匹分をここに追加）
+// CSVから変換したデータをここに貼り付けます
+// gen: 世代番号（1〜10の整数）
+// album / song: なければ null
+// photo: ファイル名、なければ null
+// =====================================================
+const hamsters = [
+  {
+    "id": 1,
+    "num": 1,
+    "name": "ショコラ",
+    "nickname": "お腹も気も弱いパパ",
+    "gen": 1,
+    "album": null,
+    "song": null,
+    "photo": "001_ショコラ.png",
+    "desc": "一生妻には大きさで勝てなかったパパ。几帳面な性格で、毎晩決まった時間に回し車に座って待機。人間に早く寝ろと圧をかける。"
+  },
+  {
+    "id": 2,
+    "num": 2,
+    "name": "わたあめ",
+    "nickname": "ヲタ芸炸裂する、肝っ玉ママ",
+    "gen": 1,
+    "album": null,
+    "song": null,
+    "photo": "002_わたあめ.png",
+    "desc": "赤ちゃん9匹を夜な夜な運搬し、パワフルな子育てをこなす肝っ玉ママ。得意技はヲタ芸。疲れると白アザラシ化。迫力と優しさを兼ね備えた美ハム。"
+  },
+  {
+    "id": 3,
+    "num": 3,
+    "name": "まーぶる",
+    "nickname": "孤高の白黒イケハム",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "003_まーぶる.png",
+    "desc": "大柄な体格ゆえか兄弟から距離を置かれ、幼い頃は一匹狼。だが人懐っこさは兄弟随一。ただのパールじゃない、渋さをまとう白黒の美ハム。"
+  },
+  {
+    "id": 4,
+    "num": 4,
+    "name": "おはぎ",
+    "nickname": "綺麗好きなねむねむの寵児",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "004_おはぎ.png",
+    "desc": "どこでも寝る。すぐ寝る。気づいたらまた寝てる。だけど人間に触られたら、すぐ砂浴びでリセット。清潔第一。回し車寝床です。"
+  },
+  {
+    "id": 5,
+    "num": 5,
+    "name": "メテオラ",
+    "nickname": "アンニュイな美少女",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "005_メテオラ.png",
+    "desc": "急激な膨張期から、奇跡の美ボディへ。努力と映えアングルでSNSもざわつく！？ダイエット成功は女子ハム羨望の的。"
+  },
+  {
+    "id": 6,
+    "num": 6,
+    "name": "でぶた",
+    "nickname": "自分の名に悩む、お皿の住人",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "006_でぶた.png",
+    "desc": "毎晩お皿に、インかオン。彼のハム生はお皿と共にある。お皿の上にじっと座す姿は渋いと評判の、元祖たぬき系ハム。"
+  },
+  {
+    "id": 7,
+    "num": 7,
+    "name": "ティラミス",
+    "nickname": "元祖手に乗らない主義",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "007_ティラミス.png",
+    "desc": "触らないで、でもちょーだい。おやつは欲しい。そんな絶妙な距離感を保ちつつ、華麗に手をすり抜けるプロ手拒否ハム。"
+  },
+  {
+    "id": 8,
+    "num": 8,
+    "name": "ここあ",
+    "nickname": "時を止めた黒い宝石",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "008_ここあ.png",
+    "desc": "年齢を感じさせない美貌と若さで、女子ハムの憧れNo.1。小柄な体に秘めた輝き。唯一の悩みは黒すぎて時々目が行方不明。"
+  },
+  {
+    "id": 9,
+    "num": 9,
+    "name": "ほいっぷ",
+    "nickname": "転んで回して生きるタフガイ",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "009_ほいっぷ.png",
+    "desc": "落ちる、転ぶ、吹っ飛ぶ。でも回し車が好き。帰巣本能でおうちに一直線、小柄な体にモンスター級のスタミナを秘めた長寿チャンピオン。"
+  },
+  {
+    "id": 10,
+    "num": 10,
+    "name": "しふぉん",
+    "nickname": "ハムササイズを極めたぺろぺろ魔",
+    "gen": 2,
+    "album": "ジブン",
+    "song": "Let'sハムササイズ",
+    "photo": "010_しふぉん.png",
+    "desc": "くびれはあるが母の自覚はない。子どもとごはんを取り合いながら、誰も真似できない激しいハムササイズを踊り続け、唐突に電池切れする。"
+  },
+  {
+    "id": 11,
+    "num": 11,
+    "name": "ばにら",
+    "nickname": "ナッツに舞う二足歩行の爆走姫",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "011_ばにら.png",
+    "desc": "ナッツでスイッチオン！ナッツ爆食いなのに太らない謎体質。三連ジャンプで舞いながら、貯蔵に励む。前世は絶対スケーター。"
+  },
+  {
+    "id": 12,
+    "num": 12,
+    "name": "カフェラテ",
+    "nickname": "怪獣ベビーから癒し系に転身",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "012_カフェラテ.png",
+    "desc": "吠えるちび怪獣から、ご機嫌ふわふわ系男子に成長。笑顔でお腹を見せながら、おやつを頬張る。仲良し兄弟の父にして、仲良し遺伝子の源。"
+  },
+  {
+    "id": 13,
+    "num": 13,
+    "name": "ブリュレ",
+    "nickname": "かっぱ疑惑と戦う俊敏おでぶ",
+    "gen": 2,
+    "album": null,
+    "song": null,
+    "photo": "013_ブリュレ.png",
+    "desc": "頭のお皿が災いし、“かっぱ枠”に強制配属。おでブリュレの愛称を持ち、見た目はぽちゃ、動きとツッコミはキレッキレ。本人は可愛い担当を主張。"
+  },
+  {
+    "id": 14,
+    "num": 14,
+    "name": "カフェモカ",
+    "nickname": "弟愛に全振りした醤油系はむすび",
+    "gen": 3,
+    "album": "キズナ",
+    "song": "手を伸ばせばそこにーSide C",
+    "photo": "014_カフェモカ.png",
+    "desc": "出禁でも弟の話を止められない。議題は常に「すふれが可愛すぎる件」。桁違いの包容力を持ち、何をされても受け止める。わがままも全部愛しい。"
+  },
+  {
+    "id": 15,
+    "num": 15,
+    "name": "すふれ",
+    "nickname": "兄依存な生まれながらのアイドル",
+    "gen": 3,
+    "album": "キズナ",
+    "song": "手を伸ばせばそこにーSide S",
+    "photo": "015_すふれ.png",
+    "desc": "兄に常にべったり。甘えん坊気質で、わがまま全開。なんでも独り占め！総選挙とレースで負けたのを根に持ち、びち太は敵認定中のきゅるるん系。"
+  },
+  {
+    "id": 16,
+    "num": 16,
+    "name": "ぷらちな",
+    "nickname": "美しき母はハム界のヒーロー",
+    "gen": 3,
+    "album": null,
+    "song": "ぷらちなX",
+    "photo": "016_ぷらちな.png",
+    "desc": "昼は優しき母、夜はハム界の平和を守るぷらちなX。労基違反にも厳しい正義の味方。びち太の母にして、ふたパカの祖。"
+  },
+  {
+    "id": 17,
+    "num": 17,
+    "name": "えくれあ",
+    "nickname": "かえるを自称する献身的なママ",
+    "gen": 3,
+    "album": null,
+    "song": null,
+    "photo": "017_えくれあ.png",
+    "desc": "自分はかえるだと信じて疑わない。子へ無償の愛を捧げ、身を削る献身的な子育てを展開。おやつ大量持ち帰りがバレた時の白々しさは絶品。"
+  },
+  {
+    "id": 18,
+    "num": 18,
+    "name": "ブッセ",
+    "nickname": "ご機嫌なゆらゆら族の開祖",
+    "gen": 3,
+    "album": null,
+    "song": null,
+    "photo": "018_ブッセ.png",
+    "desc": "気づけばるんるん♪立ち上がっては左右に揺れ続ける、ゆらゆら族の始祖。パンパンの頬袋と逆三角形体型で揺れる姿に、つられて揺れる者多数。"
+  },
+  {
+    "id": 19,
+    "num": 19,
+    "name": "カフェオレ",
+    "nickname": "強奪のプロにして最恐お姉ちゃん",
+    "gen": 4,
+    "album": "カオス",
+    "song": "奪ってないよ、くれたんだよ",
+    "photo": "019_カフェオレ.png",
+    "desc": "美貌と威圧感が同居。垂れ耳が可愛い。普段は優しが食べ物に目がなく、息を吸うように強奪を繰り返す。強奪の被害者と夫はいっぱいいる。"
+  },
+  {
+    "id": 20,
+    "num": 20,
+    "name": "くれーぷ",
+    "nickname": "奇行の貴公子",
+    "gen": 4,
+    "album": "カオス",
+    "song": "僕の方が変態だ",
+    "photo": "020_くれーぷ.png",
+    "desc": "黙ってれば超絶イケハム、動けばすべて台無し。得意技は変態歩きと変顔とふたパカ。趣味のおしっこエステで、毛並みはふわふわ天使、香りは地獄。"
+  },
+  {
+    "id": 21,
+    "num": 21,
+    "name": "びち太",
+    "nickname": "静かに爆発する変ハム遺伝子",
+    "gen": 4,
+    "album": "カオス",
+    "song": "びち太の数え歌",
+    "photo": "021_びち太.png",
+    "desc": "変態歩きの完成度が高すぎて、周囲を戸惑いの渦に巻き込んだ。すふれ譲りの可愛い顔面なのに、変態歩きで全てをぶち壊す。腐ってもびち太の兄。"
+  },
+  {
+    "id": 22,
+    "num": 22,
+    "name": "さぶれ",
+    "nickname": "美貌が逆再生する土管の申し子",
+    "gen": 4,
+    "album": "カオス",
+    "song": "土管娘の美容法",
+    "photo": "022_さぶれ.png",
+    "desc": "土管で寝て、土管を通って、美を磨く。土管エステでまさかの若返り現象。美貌と長寿を両立する奇跡の存在。おしりもキュッと引き締まってる。"
+  },
+  {
+    "id": 23,
+    "num": 23,
+    "name": "のえる",
+    "nickname": "成長も育児もマイペースな風雲児",
+    "gen": 4,
+    "album": "カオス",
+    "song": "私だっていらない",
+    "photo": "023_のえる.png",
+    "desc": "ママに反抗する赤ちゃんから、赤ちゃんを食卓にするママへ転身し、無理しない育児を展開。夫びち太は、妹に押し付けられた。"
+  },
+  {
+    "id": 24,
+    "num": 24,
+    "name": "かすてら",
+    "nickname": "ていねいに生きる奇跡の子",
+    "gen": 4,
+    "album": null,
+    "song": "奇跡の子",
+    "photo": "024_かすてら.png",
+    "desc": "片目が開かず、糖尿病も患うも、長寿を全うした奇跡の子。「手はいりませんので」と飼い主は敬語で拒否。従兄のびち太は尊敬。"
+  },
+  {
+    "id": 25,
+    "num": 25,
+    "name": "わっふる",
+    "nickname": "属性もりもりの器用貧乏",
+    "gen": 4,
+    "album": "ジブン",
+    "song": "たこ焼きわっふる",
+    "photo": "025_わっふる.png",
+    "desc": "影薄めだが、実は属性フル装備。背筋はピン！ふたは開けたら閉めるの律儀派。お皿でくるくる回り、自身をたこ焼きに仕上げる謎特技で一世を風靡。"
+  },
+  {
+    "id": 26,
+    "num": 26,
+    "name": "マキアート",
+    "nickname": "おしっこオイル系ヨガ乙女",
+    "gen": 4,
+    "album": "ジブン",
+    "song": "可愛いは作れる",
+    "photo": "026_マキアート.png",
+    "desc": "回し車でヨガポーズを決める美意識高め女子。でも毛繕いの仕上げは天然おしっこオイル。ヨガで磨いた毛並みは今日もツヤ…じゃなくてバサバサ。"
+  },
+  {
+    "id": 27,
+    "num": 27,
+    "name": "かぬれ",
+    "nickname": "ぷるぷる爆走系バインバイン",
+    "gen": 4,
+    "album": "カオス",
+    "song": "お姉ちゃんにあげる",
+    "photo": "027_かぬれ.png",
+    "desc": "世界が怖くて、うるうるぷるぷる。走る脚はプロ級。首なしぽよん、おちりバインバインな圧倒的下半身を持つ国民的アイドルで、びち太はムリだよ～。"
+  },
+  {
+    "id": 28,
+    "num": 28,
+    "name": "みるふぃーゆ",
+    "nickname": "静かに、何事も姉妹一",
+    "gen": 4,
+    "album": null,
+    "song": "末っ子だから",
+    "photo": "028_みるふぃーゆ.png",
+    "desc": "若き日々の激痩せや不調の苦難を越え、気づけば姉妹一のロングラン。母譲りのかえる跳びも姉妹一うまい。"
+  },
+  {
+    "id": 29,
+    "num": 29,
+    "name": "とるて",
+    "nickname": "ダンディーなおっさん",
+    "gen": 4,
+    "album": null,
+    "song": null,
+    "photo": "029_とるて.png",
+    "desc": "イケハムなのに、何を血迷ったか路線変更し、回し車に腰掛け、たそがれだす。おっさん化が止まらない、自称ダンディ系。"
+  },
+  {
+    "id": 30,
+    "num": 30,
+    "name": "フラン",
+    "nickname": "一途な背中使いのファンタジスタ",
+    "gen": 5,
+    "album": null,
+    "song": "年の差、サイズ差、格差婚？",
+    "photo": "030_フラン.png",
+    "desc": "何度強奪されてもカフェオレへの想いは一途。怒らず、そっと揺れながら愛を待つ。背中の使い方は異次元。ベビーフェイスだが、たまたまはでかい。"
+  },
+  {
+    "id": 31,
+    "num": 31,
+    "name": "ドルチェ",
+    "nickname": "元祖宇宙と交信する電波系",
+    "gen": 5,
+    "album": "ジブン",
+    "song": "宇宙でみんなと交信中",
+    "photo": "031_ドルチェ.png",
+    "desc": "ごはんを抱え空を見上げる、電波系ゆらゆら女子。リンゴの家からお尻だけ出して寝て、ひっくり返ったまま出てくる姿は秋色の衝撃。"
+  },
+  {
+    "id": 32,
+    "num": 32,
+    "name": "ふろまーじゅ",
+    "nickname": "横暴な次世代きゅるるんアイドル",
+    "gen": 5,
+    "album": null,
+    "song": null,
+    "photo": "032_ふろまーじゅ.png",
+    "desc": "おやつは全部自分のもの。がめつい横暴な長男。だけど弱ってる子には優しい、まさかのツンデレ属性を持つ、正統派美形ハム。"
+  },
+  {
+    "id": 33,
+    "num": 33,
+    "name": "ソイラテ",
+    "nickname": "挟まれすぎた苦労性の頭脳派",
+    "gen": 5,
+    "album": "キズナ",
+    "song": "真ん中の温度",
+    "photo": "033_ソイラテ.png",
+    "desc": "兄弟に精神的にも物理的にも板挟みにされる次男。優しさと知性で家族の調和を保とうとするが、たまに思考しすぎて時が止まる。"
+  },
+  {
+    "id": 34,
+    "num": 34,
+    "name": "すこーん",
+    "nickname": "ぬいぐるみ系うざカワ変ハム",
+    "gen": 5,
+    "album": null,
+    "song": null,
+    "photo": "034_すこーん.png",
+    "desc": "口ひん曲がってる、甘えん坊巨体ハム。兄たちにうざ絡みし、兄たちを物理的に無邪気に押し潰す。パイプで立ったまま寝る、パイプの住人。"
+  },
+  {
+    "id": 35,
+    "num": 35,
+    "name": "しゅぜっと",
+    "nickname": "びち太の正統継承者（自称）",
+    "gen": 5,
+    "album": "カオス",
+    "song": "フタパカを継し者",
+    "photo": "035_しゅぜっと.png",
+    "desc": "ふたぱか技を極めしびち娘。誰彼かまわず勝負を挑み、妹しゅくれには嫉妬で喧嘩。抱っこすればびちびち、全身からびち太の魂がにじみ出る。"
+  },
+  {
+    "id": 36,
+    "num": 36,
+    "name": "しゅくれ",
+    "nickname": "思春期から抜け出せない占い師",
+    "gen": 5,
+    "album": "カオス",
+    "song": "パパイヤ",
+    "photo": "036_しゅくれ.png",
+    "desc": "ふわとろ毛並みでもっふもふ。美貌と毒舌でハムスターの悩みを一刀両断。醤油はむすびは苦手。自称永遠の思春期のため、パパは嫌。"
+  },
+  {
+    "id": 37,
+    "num": 37,
+    "name": "ロッシェ",
+    "nickname": "ふんふん揺れる脳筋花嫁、のち花婿",
+    "gen": 5,
+    "album": null,
+    "song": null,
+    "photo": "037_ロッシェ.png",
+    "desc": "筋肉はむっちむち、心はびくびく。振り返りの風圧で吹っ飛ぶリアクション芸人。油粘土の香りと共に、ぴっち子ちゃんに愛を注いでヘアセット。"
+  },
+  {
+    "id": 38,
+    "num": 38,
+    "name": "フィナンシェ",
+    "nickname": "格闘系空飛ぶ風船女子",
+    "gen": 5,
+    "album": null,
+    "song": null,
+    "photo": "038_フィナンシェ.png",
+    "desc": "巨体なのに俊敏で、跳び蹴りかます格闘派。青空保育でわが子を放牧し、やってないのに「育児疲れた」アピだけは完璧。なお、野性は脂肪に食われた。"
+  },
+  {
+    "id": 39,
+    "num": 39,
+    "name": "カタラーナ",
+    "nickname": "可愛い系はむすび戦隊",
+    "gen": 5,
+    "album": null,
+    "song": null,
+    "photo": "039_カタラーナ.png",
+    "desc": "綺麗な三角形フォルムを維持する、はむすび戦隊隊員。夜中になると、片足でエンジンをかけてどこかへ行こうとする。"
+  },
+  {
+    "id": 40,
+    "num": 40,
+    "name": "ぱるふぇ",
+    "nickname": "羽ばたく逆年齢詐欺妖精",
+    "gen": 5,
+    "album": "ジブン",
+    "song": "アイデンティティがクライシス",
+    "photo": "040_ぱるふぇ.png",
+    "desc": "写らないほどのつよつよ顔面を持つケサパサ妖精。変ハム路線を模索し、羽ばたいてケージに顔面激突。年齢不詳の逆詐欺ビジュで今なお空を舞う。"
+  },
+  {
+    "id": 41,
+    "num": 41,
+    "name": "アフォガート",
+    "nickname": "テンパる早回しな兄",
+    "gen": 6,
+    "album": null,
+    "song": null,
+    "photo": "041_アフォガート.png",
+    "desc": "通称こん。常に動きが早回し。キャベツにもビビる超絶テンパり系。弟ぽんにおやつを奪われても怒らず右往左往、最後は飼い主を見上げてSOS。"
+  },
+  {
+    "id": 42,
+    "num": 42,
+    "name": "まどれーぬ",
+    "nickname": "ママ大好きな、怪盗こどおば",
+    "gen": 6,
+    "album": "キズナ",
+    "song": "ママは私だけのもの",
+    "photo": "042_まどれーぬ.png",
+    "desc": "妹たちを制し、母の愛を独占。ママの寝姿も肉感も愛おしい。俊敏な巨体で、おやつはママの分も華麗に盗む。ママの肉クッションで一生寝てたい。"
+  },
+  {
+    "id": 43,
+    "num": 43,
+    "name": "ふぉんでゅ",
+    "nickname": "とろけるガン決まりな弟",
+    "gen": 6,
+    "album": null,
+    "song": null,
+    "photo": "044_ふぉんでゅ.png",
+    "desc": "通称ぽん。ぽけぽけ、のんびり、おっとり。が、おやつを見ると目がガン決まり。兄こんに一切譲らず、叫びながらかっさらう。兄と動きはシンクロ100％。"
+  },
+  {
+    "id": 44,
+    "num": 44,
+    "name": "すもあ",
+    "nickname": "まだらホワイトニングな知略家",
+    "gen": 6,
+    "album": null,
+    "song": null,
+    "photo": "043_すもあ.png",
+    "desc": "争わず姉妹の隙をついて奪う、小柄な知略家。美白を夢見てホワイトニングに挑むも、まだらに終わり切なさ倍増。持ち前の俊足で、他宅に侵入しがち。"
+  },
+  {
+    "id": 45,
+    "num": 45,
+    "name": "コレット",
+    "nickname": "わがまま育ちの軟禁系ママ",
+    "gen": 6,
+    "album": "キズナ",
+    "song": "小娘から母へ",
+    "photo": "045_コレット.png",
+    "desc": "わがまま強情っぱり女王が、母になった瞬間わが子を完全囲い込み、展望台に軟禁。娘を自分用クッションに育てたという噂も。妊娠で約2倍膨張した。"
+  },
+  {
+    "id": 46,
+    "num": 46,
+    "name": "ぴち子",
+    "nickname": "ぶちゃカワな座椅子マイスター",
+    "gen": 6,
+    "album": null,
+    "song": null,
+    "photo": "046_ぴち子.png",
+    "desc": "四角い顔と小さな目で悩むも、愛嬌とぴちぴち歩きで周囲を魅了。夫ロッシェを封印し座椅子にした事件は有名。真面目に生きてるのに笑われがち。"
+  },
+  {
+    "id": 47,
+    "num": 47,
+    "name": "すぷもーね",
+    "nickname": "美味しそうでクチャいDIY娘",
+    "gen": 6,
+    "album": null,
+    "song": null,
+    "photo": "047_すぷもーね.png",
+    "desc": "焼きたてパンの毛色にルビーの瞳、むちむち弾力おちり。よだれ誘うデリシャスなビジュに反し、ガーリック臭がすごい。家をDIYし、ふたパカを発動。"
+  },
+  {
+    "id": 48,
+    "num": 48,
+    "name": "ベニエ",
+    "nickname": "巨体と俊足のゆらゆら族",
+    "gen": 6,
+    "album": null,
+    "song": null,
+    "photo": "048_ベニエ.png",
+    "desc": "誰よりもフィナンシェ似のビジュを獲得した、巨体の俊足ハム。初レースではプレ予選1位。2回目はゴール目前で逆走し、次世代ゆら族に勝利を譲る。"
+  },
+  {
+    "id": 49,
+    "num": 49,
+    "name": "らすく",
+    "nickname": "自己暗示をかける腰引けてる勇者",
+    "gen": 6,
+    "album": "ジブン",
+    "song": "一歩だけでえいゆう",
+    "photo": "049_らすく.png",
+    "desc": "ぼぼぼくはつつつ強いんだぞっと虚勢MAX。ビビりすぎて光と戦い、おやつでうっかり手に乗り大混乱。レースで踏み出した一歩には世界が泣いた。"
+  },
+  {
+    "id": 50,
+    "num": 50,
+    "name": "アマレッティ",
+    "nickname": "美しい花には罠がある地雷系ハム",
+    "gen": 6,
+    "album": "ジブン",
+    "song": "アマレッティ・ヤバレッティ",
+    "photo": "050_アマレッティ.png",
+    "desc": "美貌と裏腹に、挙動が異常。風圧でばんざい、背泳ぎで床をぐにゃぐにゃ、後退とでんぐり返しはお家芸。そのヤバさに婿候補は震えるしかない。"
+  },
+  {
+    "id": 51,
+    "num": 51,
+    "name": "ビスコッティ",
+    "nickname": "トイレに愛されし美ハム",
+    "gen": 6,
+    "album": null,
+    "song": null,
+    "photo": "051_ビスコッティ.png",
+    "desc": "かつてはげりびー女子だったが、奇跡の完治で誰もが見とれる美ハムに。回し車を爆速回転し、完璧ボディを維持。ゆらゆら族にしては珍しくまとも。"
+  },
+  {
+    "id": 52,
+    "num": 52,
+    "name": "かるめら",
+    "nickname": "ぶりぶりおちりの揺れる破天荒娘",
+    "gen": 7,
+    "album": null,
+    "song": null,
+    "photo": "052_かるめら.png",
+    "desc": "止まっても食べても、ふたパカでも微震の謎ムーヴ。ぷりぷりおちりはすぷもーねと並ぶデリシャス二大巨尻、強そうでつかみ所のない魅惑のおちり。"
+  },
+  {
+    "id": 53,
+    "num": 53,
+    "name": "フレジェ",
+    "nickname": "壁際の物思い王子",
+    "gen": 7,
+    "album": null,
+    "song": null,
+    "photo": "053_フレジェ.png",
+    "desc": "ルビーアイの小柄な王子。誰もが距離をとるアマレッティに寄り添い、彼女を受け止めた逸材。夜な夜な壁にへばりつき、物思いに耽る姿に哀愁が漂う。"
+  },
+  {
+    "id": 54,
+    "num": 54,
+    "name": "ホワイトモカ",
+    "nickname": "動かぬ美貌、白きフリ王",
+    "gen": 7,
+    "album": "キズナ",
+    "song": "空の下の約束～想い続ける、その日まで",
+    "photo": "054_ホワイトモカ.png",
+    "desc": "顔面つよつよ＆フリーズで“撮られ力”は群を抜くモデル系男子。優しく穏和で、低姿勢な白いおしぼりのため、子どもや孫たちにも大人気。弟を生涯胸に抱く。"
+  },
+  {
+    "id": 55,
+    "num": 55,
+    "name": "ぷらりね",
+    "nickname": "うるぺしゃ、お肉とろける肉厚姫",
+    "gen": 7,
+    "album": null,
+    "song": null,
+    "photo": "055_ぷらりね.png",
+    "desc": "ぺしゃっと潰れてフリフリする、通称ぺしゃりね。気づけば肉厚＆くびれ行方不明。とろけるお肉と、うるうる瞳で母性を鷲掴み。可憐で儚そうなのに、実は気が強い。"
+  },
+  {
+    "id": 56,
+    "num": 56,
+    "name": "コンパナ",
+    "nickname": "はむすび系シャリシャリガール",
+    "gen": 7,
+    "album": null,
+    "song": null,
+    "photo": "056_コンパナ.png",
+    "desc": "頬袋の中身を回し車でぶちまけ、シャリシャリ音を鳴らす。出す→シャリシャリする→回収→出すの無限ループ。アイデンティティに悩み、肉よだれかけを習得。"
+  },
+  {
+    "id": 57,
+    "num": 57,
+    "name": "こふれ",
+    "nickname": "ベビー感残す甘えん坊の白うさぎ",
+    "gen": 7,
+    "album": "キズナ",
+    "song": "空の下の約束～忘れないで、笑ってて",
+    "photo": "057_こふれ.png",
+    "desc": "愛称こっふぃー。兄ホワイトモカが大好きで、兄の前では腹見せリラックス。兄と対照的に立ち上がり標高を稼ぐ。パイプにはまりがち。詰まりがち。"
+  },
+  {
+    "id": 58,
+    "num": 58,
+    "name": "ブラウニー",
+    "nickname": "自己肯定感の鬼、スーパー勘違い男",
+    "gen": 7,
+    "album": "ジブン",
+    "song": "シゴデキ遺伝子を即注入☆",
+    "photo": "058_ブラウニー.png",
+    "desc": "希代の女たらしで、誰彼かまわず腰を振るシゴデキ。女の敵認定されているが、本人は自分がいないと世界中の女の子が寂しがると本気で思っている。"
+  },
+  {
+    "id": 59,
+    "num": 59,
+    "name": "トリュフ",
+    "nickname": "回し車で宇宙へ向かう不思議ちゃん",
+    "gen": 7,
+    "album": null,
+    "song": null,
+    "photo": "059_トリュフ.png",
+    "desc": "揺れて宇宙と交信する不思議ちゃん。かつては小柄な細身女子、出産を経てむっちり進化。ダイエットに目覚めたか、年甲斐もなく孫嫁に張り合い、回し車を爆走中。"
+  },
+  {
+    "id": 60,
+    "num": 60,
+    "name": "ガナッシュ",
+    "nickname": "哀愁漂う背中で語るゆらゆら族",
+    "gen": 7,
+    "album": null,
+    "song": null,
+    "photo": "060_ガナッシュ.png",
+    "desc": "出ても食べても走っても揺れる、哀愁ただよう背中ゆらゆら男子。軟便気味でもぷっくぷくに育ち、体は筋肉質で強弾力。"
+  },
+  {
+    "id": 61,
+    "num": 61,
+    "name": "リコッタ",
+    "nickname": "お肉弾けるお気楽な二代目風船",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "061_リコッタ.png",
+    "desc": "難産を乗り越え、赤ちゃん運搬は免許皆伝。気は小さいのに体はビッグ、ごはんの気配にはぬっと出現。回し車で仰向けに転がる姿に、二代目風船との噂。"
+  },
+  {
+    "id": 62,
+    "num": 62,
+    "name": "ぱんけーき",
+    "nickname": "フリーズしがちな悪い子ハンター",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "062_ぱんけーき.png",
+    "desc": "一見、うるうる瞳でフリーズする清楚なお嬢様。だが育児となれば眼光鋭い悪い子ハンターに変貌。逃げる赤ちゃんを回収する、2面性ある美ハム。"
+  },
+  {
+    "id": 63,
+    "num": 63,
+    "name": "ファッジ",
+    "nickname": "換気と警備にこだわるフタパカ族",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "063_ファッジ.png",
+    "desc": "フタはフルオープン派の換気にこだわるハム。ケージ内はパーソナルスペースで、踏み込むものは許さない。だが、外に出れば借りてきたハム。"
+  },
+  {
+    "id": 64,
+    "num": 64,
+    "name": "とうふぁ",
+    "nickname": "月を見上げる白い脱走姫",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "064_とうふぁ.png",
+    "desc": "白い体に透き通る赤い瞳の小柄な美人。家を破って脱走し、塞がれれば癇癪爆発。夜な夜な家の上で空を見上げ、月に帰りたそうにしている？脱走姫。"
+  },
+  {
+    "id": 65,
+    "num": 65,
+    "name": "ダークモカ",
+    "nickname": "逃げ足最速のつぶされ長男",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "065_ダークモカ.png",
+    "desc": "ノーマルなのに大きい。成長は最速。他3兄弟の重みを一身に引き受け、つぶされて寝ている。落ち着きがなく、逃げ足が速い。兄弟最速。"
+  },
+  {
+    "id": 66,
+    "num": 66,
+    "name": "ぱいこ",
+    "nickname": "属性盛り続ける、才能溢れる少女",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "066_ぱいこ.png",
+    "desc": "ぱいぱいネームに悩み続ける女子。曾祖父ソイラテの賢さと優しさ、祖父ぱるふぇのジャンプ力を引き継ぎ、最近ではフタパカもデビュー。"
+  },
+  {
+    "id": 67,
+    "num": 67,
+    "name": "ことん",
+    "nickname": "夜な夜な爆走し続けるダイエッター",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "067_ことん.png",
+    "desc": "回し車では姉妹に振り落とされ、おやつ争いも不参加な平和主義者。ぷくぷく体型を気にして、毎晩「ダイエット―！」とストイックに走り続けている。"
+  },
+  {
+    "id": 68,
+    "num": 68,
+    "name": "ねむりーの",
+    "nickname": "半目の癒し系ねむりの王子",
+    "gen": 8,
+    "album": "キズナ",
+    "song": "まだそこにいて",
+    "photo": "068_ねむりーの.png",
+    "desc": "モデルの才能溢れ、外にでるとフリフリモード発動。反応は激遅。争いは好まず、おやつは半分こor横からすっとかすめ取る。ぽけっとしてるのに要領が良い。"
+  },
+  {
+    "id": 69,
+    "num": 69,
+    "name": "ぺこりーの",
+    "nickname": "おやつに貪欲な強奪王",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "069_ぺこりーの.png",
+    "desc": "強奪力は兄弟随一。おやつの引っ張り合いになったときの暴れっぷりは手に負えない。食べ過ぎたか、兄ダークモカをも抜かし、兄弟一の巨体に成長。"
+  },
+  {
+    "id": 70,
+    "num": 70,
+    "name": "ぱんな",
+    "nickname": "欲しいものは譲らない強奪少女",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "070_ぱんな.png",
+    "desc": "ホワイトモカパパ譲りの顔面つよつよ。姉妹一の美ハムにして、姉妹一大きく、かつ最強。気が強くて、おやつは奪ってなんぼ。おやつの前ではママも敵。"
+  },
+  {
+    "id": 71,
+    "num": 71,
+    "name": "こった",
+    "nickname": "気弱で内弁慶な末っ子",
+    "gen": 8,
+    "album": null,
+    "song": null,
+    "photo": "071_こった.png",
+    "desc": "兄弟には強気な暴れん坊だが、人間からは即逃走、女子を前にすると涙目になるビビりっ子にして引きこもり。奥手な草食男子だが、決めるときは鮮やかに決める。"
+  },
+  {
+    "id": 72,
+    "num": 72,
+    "name": "トフィー",
+    "nickname": "床材に潜む赤目のおばけ男子",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "072_トフィー.png",
+    "desc": "夜まで出てこず、床材の中に潜む赤目のおばけ男子。外では震えるのに人間には動じず、抱っこも簡単。落ち着きなく写真は幻。"
+  },
+  {
+    "id": 73,
+    "num": 73,
+    "name": "フォレ",
+    "nickname": "フリーズ系ビビりな暴走機関車",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "073_フォレ.png",
+    "desc": "赤い瞳でしばらくフリーズ。ようやく動いたと思った次の瞬間、視界から消える。夜中は回し車を走り続け、たまに鳴きながら暴走するビビり女子。"
+  },
+  {
+    "id": 74,
+    "num": 74,
+    "name": "まふぃん",
+    "nickname": "お見合いを回避したふわもち美ハム",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "074_まふぃん.png",
+    "desc": "美味しそうなふわもち体型とおちりの持ち主。具合悪いふりしてお見合いを回避し、おひとり様生活を手に入れた途端、ぷっくぷく。基本優しいが、男子には厳しい。"
+  },
+  {
+    "id": 75,
+    "num": 75,
+    "name": "アーモンド",
+    "nickname": "一生メンテが明けないシゴデキJr.",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "075_アーモンド.png",
+    "desc": "シゴデキjr.として期待された分家長男。だが女子を前にするとたまたまメンテが長引きがち。勝てる戦いにしか挑みたくない、女子に押し倒されるヘタレな草食系。"
+  },
+  {
+    "id": 76,
+    "num": 76,
+    "name": "まかだみあ",
+    "nickname": "穏和に見える影の支配者",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "076_まかだみあ.png",
+    "desc": "シゴデキ家の長女。姉妹一美ハムで穏和。めったに怒らないが、ひとたび怒ればたぶん誰よりも怖い。影の支配者モードになると、人相が悪くなる。"
+  },
+  {
+    "id": 77,
+    "num": 77,
+    "name": "カシュ―",
+    "nickname": "分家一できる残念なおもらしイケメン",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "077_カシュ_.png",
+    "desc": "分家のエースなのに、部屋んぽではおもらし、女子には興味ゼロ。弟には謎のツンデレ対応で、でかいたまたまとシゴデキ遺伝子は今日も泣いてる。"
+  },
+  {
+    "id": 78,
+    "num": 78,
+    "name": "ぱん子",
+    "nickname": "高台で揺れる大型メトロノーム",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "078_ぱん子.png",
+    "desc": "姉妹一大きなボディで夜な夜な高台に立ち、激震しながら電波を受信。前には出ない性格ゆえ、結果、だいたい貧乏くじ。名前も貧乏くじ。"
+  },
+  {
+    "id": 79,
+    "num": 79,
+    "name": "くるみ",
+    "nickname": "気の強い漬物石にして、フタパカ族",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "079_くるみ.png",
+    "desc": "家の屋根の上に乗って、フタを締め、姉や母を封印しがち。気が強くて、すぐ噛む。自分の家は床材詰めすぎて、たいてい爆発している。"
+  },
+  {
+    "id": 80,
+    "num": 80,
+    "name": "ブラお",
+    "nickname": "愛の向かう先を間違えた三男坊",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "080_ブラお.png",
+    "desc": "兄カシュ―を愛しすぎ、夜な夜な兄のおちりを追いかけ、腰を振るBLお。女子がいても視線の向かう先は兄。たまたまの使いどころを間違えすぎている。"
+  },
+  {
+    "id": 81,
+    "num": 81,
+    "name": "ぴちる",
+    "nickname": "母も恐れる最速ちび女王",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "081_ぴちる.png",
+    "desc": "小さい頃から自分より大きな相手にも臆さず突っ込む、恐れ知らずの快速娘。小さいのに強すぎて、自分の3倍もでかいママに体当たり。ガーリック臭は嫌い。"
+  },
+  {
+    "id": 82,
+    "num": 82,
+    "name": "ぽわれ",
+    "nickname": "おしっこ香る美形ブレイクダンサー",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "082_ぽわれ.png",
+    "desc": "回し車でひねりを利かせるブレイクダンスは、切れ味抜群。顔面つよつよだが、回し車でしたおしっこを身にまとい、毛割れ気味。おかげで香りまで切れ味抜群。"
+  },
+  {
+    "id": 83,
+    "num": 83,
+    "name": "そわれ",
+    "nickname": "やばれってぃ界隈のごきげん王子",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "083_そわれ.png",
+    "desc": "本家初の赤目男子。行動が予測不能なやばれってぃ界隈筆頭。なぜかいつもご機嫌で、ねじれて愛嬌を振りまく。頬袋は限界までつめがちで四角くなるのが得意。"
+  },
+  {
+    "id": 84,
+    "num": 84,
+    "name": "ブルトンヌ",
+    "nickname": "そわれ直伝やばれってぃ界隈ママ",
+    "gen": 9,
+    "album": null,
+    "song": null,
+    "photo": "084_ブルトンヌ.png",
+    "desc": "同居中そわれに染まり、やばれってぃ界隈デビュー。いつも潤んだ瞳でねじれてる、心優しき穏和なママ。本家の血をつないだ後、隣の大姑と張り合い回し車で爆走中。"
+  },
+  {
+    "id": 85,
+    "num": 85,
+    "name": "キャラメリゼ",
+    "nickname": "世の中すべて解せぬ不動の岩ハム",
+    "gen": 10,
+    "album": null,
+    "song": null,
+    "photo": "085_キャラメリゼ.png",
+    "desc": "はむはむレースではスタート地点から一歩も動かず、抽選会でも岩のようにフリーズ。小さな目で「解せぬ」と訴える、まんまる不動の岩ハム。妊活？解せぬ。"
+  },
+  {
+    "id": 86,
+    "num": 86,
+    "name": "ガレット",
+    "nickname": "好奇心で飛び出す小さな冒険家",
+    "gen": 10,
+    "album": null,
+    "song": null,
+    "photo": "086_ガレット.png",
+    "desc": "すばしっこくて目を一瞬でも離したら見失う。好奇心旺盛で駆け寄ってくるのに、脱兎のごとく逃げる。脱走する隙を常に伺う、落ち着きない長女。"
+  },
+  {
+    "id": 87,
+    "num": 87,
+    "name": "ふるり",
+    "nickname": "恋に悩める俊足どすこい乙女",
+    "gen": 10,
+    "album": null,
+    "song": null,
+    "photo": "087_ふるり.png",
+    "desc": "ゆるふわ女子。お見合いではことごとく振り向いてもらえず乙女の自信がぐらついた。巨体なのに運動神経抜群で、お肉を震わせ走り跳ぶ。恋で揺れて、お肉も揺れる。"
+  },
+  {
+    "id": 88,
+    "num": 88,
+    "name": "プルミエ",
+    "nickname": "家の中でフリーズする初代ムーン",
+    "gen": 10,
+    "album": null,
+    "song": null,
+    "photo": "088_プルミエ.png",
+    "desc": "初のムーンとして生まれた、優しく気弱な女の子。外では動き回るのに、家の中では謎にフリーズ。フリーズしながら虚空を見上げ、宇宙からの掲示を受けてる模様。"
+  },
+  {
+    "id": 89,
+    "num": 89,
+    "name": "ぷるれってぃ",
+    "nickname": "姉妹無双するトラブルメーカー",
+    "gen": 10,
+    "album": null,
+    "song": null,
+    "photo": "089_ぷるれってぃ.png",
+    "desc": "ぱっちり瞳の美人さんなのに、動きは怪しいやばれってぃ界隈所属。姉妹が近づくだけでビビり散らかし、思わず先制パンチ。一家離散を招いたトラブルメーカー。"
+  },
+  {
+    "id": 90,
+    "num": 90,
+    "name": "とわれ",
+    "nickname": "本能を解禁した小粒な肉食男子",
+    "gen": 10,
+    "album": "キズナ",
+    "song": "巣立ちの朝",
+    "photo": "090_とわれ.png",
+    "desc": "本能を理性で抑え込み、最後まで腰を振らなかったみんなの弟。その反動か、お見合いでは大柄女子にも怯まず、高速腰フリ時短テクを披露。行動はそわれのコピー。"
+  },
+  {
+    "id": 91,
+    "num": 91,
+    "name": "フレーズ",
+    "nickname": "予測不能な赤目の弾丸娘",
+    "gen": 10,
+    "album": null,
+    "song": null,
+    "photo": "091_フレーズ.png",
+    "desc": "小さく細身の赤目女子。すばしっこく予測不能で、夜な夜な猛スピードで走り回る。でんぐり返しで床材に潜る技は圧巻。自分の2倍以上ある男子にも強気。"
+  },
+  {
+    "id": 92,
+    "num": 92,
+    "name": "ネージュ",
+    "nickname": "距離感ゼロな期待のニューカマー",
+    "gen": 10,
+    "album": null,
+    "song": null,
+    "photo": "092_ネージュ.png",
+    "desc": "お迎え初日から物怖じせず手乗り。ケージを開ければどんどん前に出て、戻しても戻してもまた手に乗る。距離感ゼロの次世代を担うかも知れない嫁候補。"
+  }
+];
+
+// =====================================================
+const GEN_FILTERS = {
+  'all': null,
+  '1,2': [1,2], '3,4': [3,4],
+  '5':[5], '6':[6], '7':[7], '8':[8], '9':[9], '10':[10]
+};
+let currentFilter = 'all';
+let currentSearch = '';
+
+function metaVal(val, plain) {
+  if (val) return `<span class="val${plain ? ' plain' : ''}">${val}</span>`;
+  return `<span class="val none">--</span>`;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  const allowedGens = GEN_FILTERS[currentFilter];
+  const filtered = hamsters.filter(h => {
+    const okGen = !allowedGens || allowedGens.includes(h.gen);
+    const q = currentSearch;
+    return okGen && (!q || h.name.includes(q) || h.nickname.includes(q));
+  });
+  document.getElementById('total-count').textContent = hamsters.length;
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty"><span class="emoji">🐹</span>該当するハムスターが見つかりません</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(h => `
+    <div class="card" data-gen="${h.gen}" onclick="openModal(${h.id})">
+      <div class="card-photo">
+        ${h.photo ? `<img src="${h.photo}" alt="${h.name}" loading="lazy">` : '<div class="no-img">🐹</div>'}
+        <span class="gen-tag">${h.gen}世代</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nickname">${h.nickname}</div>
+        <div class="card-name">${h.name}</div>
+        <div class="card-desc">${h.desc}</div>
+        <div class="card-footer">
+          <span>No.${String(h.num).padStart(2,'0')}</span>
+          <span class="song-val ${h.song ? 'has' : 'none'}">${h.song || '--'}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openModal(id) {
+  const h = hamsters.find(x => x.id === id);
+  if (!h) return;
+  const modal = document.getElementById('modal');
+  modal.dataset.gen = h.gen;
+  document.getElementById('modal-photo-wrap').innerHTML = h.photo
+    ? `<div class="modal-photo"><img src="${h.photo}" alt="${h.name}"></div>`
+    : `<div class="modal-photo no-photo">🐹</div>`;
+  document.getElementById('modal-num').textContent = String(h.num).padStart(2,'0');
+  document.getElementById('modal-nickname').textContent = h.nickname;
+  document.getElementById('modal-name').textContent = h.name;
+  document.getElementById('modal-meta').innerHTML = `
+    <div class="meta-row"><span class="lbl">♪</span>${metaVal(h.song)}</div>
+    <div class="meta-row"><span class="lbl">アルバム</span>${metaVal(h.album, true)}</div>
+  `;
+  document.getElementById('modal-gen-badge').textContent = `第${h.gen}世代`;
+  document.getElementById('modal-desc').textContent = h.desc;
+  document.getElementById('backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderGrid();
+  });
+});
+document.getElementById('search').addEventListener('input', e => {
+  currentSearch = e.target.value.trim();
+  renderGrid();
+});
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('backdrop').addEventListener('click', e => {
+  if (e.target === document.getElementById('backdrop')) closeModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if ((e.ctrlKey || e.metaKey) && 'sup'.includes(e.key)) e.preventDefault();
+});
+renderGrid();
+</script>
+</body>
+</html>
