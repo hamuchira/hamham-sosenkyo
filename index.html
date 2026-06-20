@@ -730,7 +730,7 @@ const hamsters = [
     "id": 20,
     "num": 20,
     "name": "くれーぷ",
-    "nickname": "奇行の貴公子",
+    "nickname": "静かに爆発する変ハム遺伝子",
     "gen": 4,
     "album": "カオス",
     "song": "僕の方が変態だ",
@@ -742,7 +742,7 @@ const hamsters = [
     "id": 21,
     "num": 21,
     "name": "びち太",
-    "nickname": "静かに爆発する変ハム遺伝子",
+    "nickname": "奇行の貴公子",
     "gen": 4,
     "album": "カオス",
     "song": "びち太の数え歌",
@@ -1413,12 +1413,12 @@ const hamsters = [
   {
     "id": 77,
     "num": 77,
-    "name": "カシュ―",
+    "name": "カシュー",
     "nickname": "分家一できる残念なおもらしイケメン",
     "gen": 9,
     "album": null,
     "song": null,
-    "photo": "077_カシュ_.png",
+    "photo": "077_カシュー.png",
     "desc": "分家のエースなのに、部屋んぽではおもらし、女子には興味ゼロ。弟には謎のツンデレ対応で、でかいたまたまとシゴデキ遺伝子は今日も泣いてる。",
     "gender": "男子"
   },
@@ -1551,7 +1551,7 @@ const hamsters = [
     "album": null,
     "song": null,
     "photo": "088_プルミエ.png",
-    "desc": "初のムーンとして生まれた、優しく気弱な女の子。外では動き回るのに、家の中では謎にフリーズ。フリーズしながら虚空を見上げ、宇宙からの掲示を受けてる模様。",
+    "desc": "初のムーンとして生まれた、優しく気弱な女の子。外では動き回るのに、家の中では謎にフリーズ。フリーズしながら虚空を見上げ、宇宙からの啓示を受けてる模様。",
     "gender": "女子"
   },
   {
@@ -1620,11 +1620,13 @@ function metaVal(val, plain) {
 
 function renderGrid() {
   const grid = document.getElementById('grid');
-  const allowedGens = GEN_FILTERS[currentFilter];
+  const q = currentSearch;
+  // 検索キーワードがある場合は世代タブを無視して全体から検索する
+  const allowedGens = q ? null : GEN_FILTERS[currentFilter];
   const filtered = hamsters.filter(h => {
     const okGen = !allowedGens || allowedGens.includes(h.gen);
-    const q = currentSearch;
-    return okGen && (!q || h.name.includes(q) || h.nickname.includes(q));
+    const okSearch = !q || h.name.includes(q) || h.nickname.includes(q);
+    return okGen && okSearch;
   });
   document.getElementById('total-count').textContent = hamsters.length;
   if (!filtered.length) {
@@ -1690,6 +1692,12 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 document.getElementById('search').addEventListener('input', e => {
   currentSearch = e.target.value.trim();
+  // 検索中は「すべて」タブをアクティブ表示にして、世代フィルター中であることによる混乱を防ぐ
+  if (currentSearch) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+    currentFilter = 'all';
+  }
   renderGrid();
 });
 document.getElementById('modal-close').addEventListener('click', closeModal);
