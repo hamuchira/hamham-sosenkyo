@@ -75,6 +75,9 @@
   .start-btn:hover{ filter:brightness(1.04); }
   .top-foot{ margin-top:16px; font-size:11px; color:var(--ink-soft); }
 
+  .roster-heading{ font-family:'Zen Maru Gothic', sans-serif; font-size:15px; font-weight:800; color:var(--ink);
+    text-align:center; margin:30px 0 14px; padding-bottom:8px; border-bottom:2px dashed rgba(43,33,24,0.18); }
+
   .top-share{ margin-top:22px; padding-top:18px; border-top:1.5px dashed rgba(43,33,24,0.25); }
   .top-share-label{ font-size:12px; font-weight:800; color:var(--ink-soft); margin-bottom:10px; }
   .share-btn.copy{ background:#fff; color:var(--ink); border:1.5px solid var(--ink); }
@@ -264,9 +267,10 @@ function renderTop(){
       <p class="top-sub">全<b>16タイプ</b>に分類！あなたはどのハムスタータイプ？</p>
       <span class="top-tip">🐹 推しハムと同じタイプを引き当てられるか試してみてね！</span>
       <div class="top-photos">${photos}</div>
-      <div class="roster">${items}</div>
       <button class="start-btn" onclick="startQuiz()">診断スタート →</button>
       <p class="top-foot">全${QUESTIONS.length}問・所要時間 約2分</p>
+      <h2 class="roster-heading">📋 全16タイプの性格分類</h2>
+      <div class="roster">${items}</div>
       <div class="top-share">
         <p class="top-share-label">この診断を友達にもシェアする</p>
         <div class="share-row">
@@ -281,15 +285,15 @@ function renderTop(){
 
 function shareTopX(){
   const text = encodeURIComponent('はむはむ性格診断やってみた！あなたはどのハムスタータイプ？全16タイプ診断🐹 #はむはむ総選挙 #はむはむ性格診断');
-  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/');
+  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/shindan/');
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
 }
 function shareTopLine(){
-  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/');
+  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/shindan/');
   window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank');
 }
 function copyTopURL(){
-  const url = 'https://hamuchira.github.io/hamham-sosenkyo/';
+  const url = 'https://hamuchira.github.io/hamham-sosenkyo/shindan/';
   const btn = document.getElementById('copyBtn');
   navigator.clipboard.writeText(url).then(() => {
     btn.classList.add('done');
@@ -445,11 +449,11 @@ function actionsHTML(isSSR){
 function shareX(){
   const card = document.getElementById('resultCard');
   const text = encodeURIComponent(card.dataset.tweet);
-  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/');
+  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/shindan/');
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
 }
 function shareLine(){
-  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/');
+  const url = encodeURIComponent('https://hamuchira.github.io/hamham-sosenkyo/shindan/');
   window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank');
 }
 function saveImage(){
